@@ -1,0 +1,9 @@
+{
+  "id": "github",
+  "channels": ["github"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

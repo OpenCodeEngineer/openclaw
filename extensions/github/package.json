@@ -1,0 +1,33 @@
+{
+  "name": "@openclaw/github",
+  "version": "2026.2.18",
+  "description": "OpenClaw GitHub channel plugin",
+  "type": "module",
+  "devDependencies": {
+    "openclaw": "workspace:*"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "channel": {
+      "id": "github",
+      "label": "GitHub",
+      "selectionLabel": "GitHub (Issues + PR comments)",
+      "detailLabel": "GitHub",
+      "docsPath": "/channels/github",
+      "docsLabel": "github",
+      "blurb": "Route issue and PR comments through OpenClaw via webhooks.",
+      "aliases": [
+        "gh"
+      ],
+      "order": 68,
+      "quickstartAllowFrom": true
+    },
+    "install": {
+      "npmSpec": "@openclaw/github",
+      "localPath": "extensions/github",
+      "defaultChoice": "npm"
+    }
+  }
+}
