@@ -36,6 +36,15 @@ jobs:
         id: image
         run: echo "name=${REGISTRY}/${GITHUB_REPOSITORY,,}:telegram-proxy" >> "$GITHUB_OUTPUT"
 
+      - name: Verify source files
+        run: |
+          echo "=== Checking proxy-ingress source ==="
+          ls -la extensions/telegram/src/proxy-ingress.ts
+          head -5 extensions/telegram/index.ts
+          echo "=== Checking proxy-ingress exists ==="
+          grep -c "createProxyIngressHandler" extensions/telegram/index.ts
+          grep -c "registerFull" extensions/telegram/index.ts
+
       - name: Build and push
         id: build
         uses: docker/build-push-action@v6
@@ -44,8 +53,7 @@ jobs:
           platforms: linux/amd64
           build-args: |
             OPENCLAW_EXTENSIONS=telegram
-          cache-from: type=gha,scope=docker-telegram-proxy
-          cache-to: type=gha,mode=max,scope=docker-telegram-proxy
+          no-cache: true
           tags: ${{ steps.image.outputs.name }}
           provenance: false
           push: true
