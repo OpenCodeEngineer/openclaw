@@ -36,15 +36,6 @@ jobs:
         id: image
         run: echo "name=${REGISTRY}/${GITHUB_REPOSITORY,,}:telegram-proxy" >> "$GITHUB_OUTPUT"
 
-      - name: Verify source files
-        run: |
-          echo "=== Checking proxy-ingress source ==="
-          ls -la extensions/telegram/src/proxy-ingress.ts
-          head -5 extensions/telegram/index.ts
-          echo "=== Checking proxy-ingress exists ==="
-          grep -c "createProxyIngressHandler" extensions/telegram/index.ts
-          grep -c "registerFull" extensions/telegram/index.ts
-
       - name: Build and push
         id: build
         uses: docker/build-push-action@v6
